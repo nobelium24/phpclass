@@ -117,8 +117,6 @@ if (isset($_POST)) {
                 <th>Order ID</th>
                 <th>Customer Name</th>
                 <th>Pizza Name</th>
-                <th>Price</th>
-                <th>Order Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -135,15 +133,12 @@ if (isset($_POST)) {
                         <td>" . $pizza['id'] . "</td>
                         <td>" . $pizza['email'] . "</td>
                         <td>" . $pizza['pizzaname'] . "</td>
-                        <td>" . $pizza['pizzaprice'] . "</td>
-                        <td>" . $pizza['created_at'] . "</td>
-                        <td>
+                        <td class='d-flex'>
+                            <div class='me-1'>
+                            <a href='view.php?id=" . $pizza['id'] . "' class='btn btn-sm btn-outline-dark'>View</a>
                             <a href='edit.php?id=" . $pizza['id'] . "' class='btn btn-sm btn-outline-dark'>Edit</a>
-                            <form method='post' action='delete.php'>
-                            <input type='hidden' name='id' value='" . $pizza['id'] . "'>
-                            <button class='btn btn-sm btn-outline-danger'>Delete</button>
-                            </form>
-
+                            <a href='delete.php?id=" . $pizza['id'] . "' class='btn btn-sm btn-outline-danger'>Delete</a>
+                            </div>
                         </td>
                     </tr>");
             }
