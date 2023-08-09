@@ -1,5 +1,6 @@
 <?php
 require("./config/connect.php");
+session_start(); //This is used to start our session
 
 
 $email = $pizzaIngredients = $pizzaName = $pizzaPrice = "";
@@ -61,6 +62,18 @@ if (isset($_POST)) {
         $pizzaIngredients = $_POST['ingredients'];
         $pizzaPrice = $_POST['price'];
         $email = $_POST['email'];
+
+        //To save data to the server session storage, we assign what we want to save to an arbitrary key created for the $_SESSION superGlobal
+        $_SESSION["email"]  = $email;
+        $_SESSION["price"] = $pizzaPrice;
+
+        print_r($_SESSION);
+
+        unset($_SESSION['price']); //Used to get rid of a single value in oue session
+        print_r($_SESSION);
+
+        session_unset(); //Used to clear session
+        print_r($_SESSION);
 
         //Create sql query to insert into DB
         $sql = "INSERT INTO pizzas(pizzaname, pizzaingredients, pizzaprice, email) VALUES('$pizzaName', '$pizzaIngredients', '$pizzaPrice', '$email')";
